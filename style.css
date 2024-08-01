@@ -1,0 +1,142 @@
+@font-face {
+	font-family: AlfaSlabOne-Regular;
+	src: url('./font/AlfaSlabOne-Regular.ttf');
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+.container {
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: rgb(44, 44, 63);
+}
+
+.hamburger-menu {
+	width: 5rem;
+	aspect-ratio: 1;
+	/* aspect-ratio:1 => the menu will have the same height as the width -> 5rem */
+	position: fixed;
+	top: 2rem;
+	right: 4rem;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 1rem;
+	cursor: pointer;
+	transform: scale(0.8);
+	transition: transform 0.4s;
+}
+
+.hamburger-menu.active {
+	transform: scale(0.8) rotate(405deg);
+}
+.hamburger-menu:hover.active {
+	transform: scale(1) rotate(225deg);
+}
+
+.hamburger-menu:hover {
+	transform: scale(1) rotate(180deg);
+}
+
+.line {
+	position: relative;
+	width: 100%;
+	height: 0.2rem;
+	background-color: #fff;
+}
+.line::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	transform: rotate(90deg) translate(0.65rem, 0.5rem);
+	width: 100%;
+	height: 100%;
+	background-color: inherit;
+}
+.line:last-child::before {
+	transform: rotate(90deg) translate(-0.65rem, -0.5rem);
+}
+
+.navbar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	transform: scale(3) rotate(-15deg);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s, visibility 0.5s, transform 1s;
+}
+.navbar.active {
+	transform: scale(1);
+	opacity: 1;
+	visibility: visible;
+}
+
+.nav-video {
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+	opacity: 0.2;
+}
+
+.navbar-img {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	width: 50%;
+	opacity: 0.2;
+	transition: transform 1.5s;
+}
+
+.nav-link {
+	font-family: AlfaSlabOne-Regular;
+	font-size: clamp(3.5rem, 10cqi, 10rem);
+	text-decoration: none;
+	display: block;
+	letter-spacing: 0.2rem;
+}
+
+.nav-link:hover {
+	transform: translateX(-2rem);
+	transition: transform 0.3s;
+}
+
+.nav-link span {
+	text-transform: uppercase;
+	display: inline-block;
+	color: #fff;
+	transform: translateX(0);
+}
+
+.nav-link:hover span {
+	animation: letterAnim 0.5s calc(var(--i) + 0.2s) forwards;
+}
+
+@keyframes letterAnim {
+	0% {
+		transform: translate(0, 0);
+		color: #fff;
+	}
+	50% {
+		color: #e6a570;
+	}
+	100% {
+		transform: translate(2rem, 0);
+		color: #ebe8c8;
+	}
+}
